@@ -3,8 +3,10 @@ namespace DCMS.Domain.Enums
 {
     public enum AppointmentStatus
     {
-        Scheduled = 1,
-        Cancelled = 2,
-        Completed = 3
+        Pending = 1,
+        Confirmed = 2,
+        Scheduled = 3,
+        Cancelled = 4,
+        Completed = 5
     }
 }

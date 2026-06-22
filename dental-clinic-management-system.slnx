@@ -1,7 +1,9 @@
 <Solution>
   <Folder Name="/API/" />
   <Folder Name="/Application/" />
-  <Folder Name="/Domain/" />
+  <Folder Name="/Domain/">
+    <Project Path="DCMS.Domain/DCMS.Domain.csproj" />
+  </Folder>
   <Folder Name="/Infrastructure/" />
   <Folder Name="/Persistence/" />
   <Folder Name="/Tests/" />

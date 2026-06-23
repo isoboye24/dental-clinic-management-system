@@ -16,16 +16,5 @@ namespace DCMS.Test.Domain.Entities
                 "Dentist name is required.",
                 ex.Message);
         }
-
-        [TestMethod]
-        public void Constructor_NullEmail_ThrowsBusinessRuleException()
-        {
-            var ex = Assert.Throws<BusinessRuleException>(
-                () => new DentalOffice(null!));
-
-            Assert.AreEqual(
-                "Dentist name is required.",
-                ex.Message);
-        }
     }
 }

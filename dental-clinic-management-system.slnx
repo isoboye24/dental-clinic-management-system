@@ -1,6 +1,8 @@
 <Solution>
   <Folder Name="/API/" />
-  <Folder Name="/Application/" />
+  <Folder Name="/Application/">
+    <Project Path="DCMS.Application/DCMS.Application.csproj" Id="4cb3317f-2698-423e-b076-e8cb5e9bae41" />
+  </Folder>
   <Folder Name="/Domain/">
     <Project Path="DCMS.Domain/DCMS.Domain.csproj" />
   </Folder>

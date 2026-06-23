@@ -1,6 +1,4 @@
-﻿
-
-using DCMS.Domain.Exceptions;
+﻿using DCMS.Domain.Exceptions;
 
 namespace DCMS.Domain.ValueObjects
 {
@@ -13,7 +11,7 @@ namespace DCMS.Domain.ValueObjects
         {
             if (start > end)
             {
-                throw new BusinessRuleException("The start time cannot be after the end time");
+                throw new BusinessRuleException("Start time must be earlier than end time.");
             }
 
             Start = start;

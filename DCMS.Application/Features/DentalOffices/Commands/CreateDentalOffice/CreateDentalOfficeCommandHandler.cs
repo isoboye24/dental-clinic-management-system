@@ -1,6 +1,8 @@
 ﻿using DCMS.Application.Contracts.Persistence;
 using DCMS.Application.Contracts.Repositories;
+using DCMS.Application.Exceptions;
 using DCMS.Domain.Entities;
+using FluentValidation;
 
 namespace DCMS.Application.Features.DentalOffices.Commands.CreateDentalOffice
 {
@@ -8,14 +10,24 @@ namespace DCMS.Application.Features.DentalOffices.Commands.CreateDentalOffice
     {
         private readonly IDentalOfficeRepository _repository;
         private readonly IUnitOfWork _unitOfWork;
-        public CreateDentalOfficeCommandHandler(IDentalOfficeRepository repository, IUnitOfWork unitOfWork)
+        private readonly IValidator<CreateDentalOfficeCommand> _validator;
+
+        public CreateDentalOfficeCommandHandler(IDentalOfficeRepository repository, IUnitOfWork unitOfWork,
+            IValidator<CreateDentalOfficeCommand> validator)
         {
             _repository = repository;
             _unitOfWork = unitOfWork;
+            _validator = validator;
         }
 
         public async Task<Guid> Handle(CreateDentalOfficeCommand command)
         {
+            var validationResult = await _validator.ValidateAsync(command);
+            if (!validationResult.IsValid)
+            {
+                throw new CustomValidationException(validationResult);
+            }
+
             var dentalOffice = new DentalOffice(command.Name);
             try
             {

@@ -1,5 +1,4 @@
-﻿
-using DCMS.Domain.Exceptions;
+﻿using DCMS.Domain.Exceptions;
 using System.Net.Mail;
 
 namespace DCMS.Domain.ValueObjects
@@ -14,6 +13,8 @@ namespace DCMS.Domain.ValueObjects
                 throw new BusinessRuleException("Email is required.");
             }
 
+            email = email.Trim();
+
             try
             {
                 var mailAddress = new MailAddress(email);
@@ -23,7 +24,7 @@ namespace DCMS.Domain.ValueObjects
                     throw new BusinessRuleException("Email address is not valid.");
                 }
             }
-            catch
+            catch (FormatException)
             {
                 throw new BusinessRuleException("Email address is not valid.");
             }

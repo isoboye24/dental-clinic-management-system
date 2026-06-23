@@ -1,5 +1,6 @@
 ﻿using DCMS.Domain.Enums;
 using DCMS.Domain.Exceptions;
+using DCMS.Domain.ValueObjects;
 
 namespace DCMS.Domain.Entities
 {
@@ -10,8 +11,7 @@ namespace DCMS.Domain.Entities
         public Guid DentistId { get; private set; }
         public Guid DentalOfficeId { get; private set; }
         public AppointmentStatus Status { get; private set; }
-        public DateTime StartTime { get; private set; }
-        public DateTime EndTime { get; private set; }
+        public TimeInterval TimeInterval { get; private set; }
         public Patient? Patient { get; private set; }
         public Dentist? Dentist { get; private set; }
         public DentalOffice? DentalOffice { get; private set; }
@@ -20,8 +20,7 @@ namespace DCMS.Domain.Entities
            Guid patientId,
            Guid dentistId,
            Guid dentalOfficeId,
-           DateTime startTime,
-           DateTime endTime)
+           TimeInterval timeInterval)
         {
             if (patientId == Guid.Empty)
                 throw new BusinessRuleException("Patient is required.");
@@ -32,21 +31,20 @@ namespace DCMS.Domain.Entities
             if (dentalOfficeId == Guid.Empty)
                 throw new BusinessRuleException("Dental office is required.");
 
-            if (startTime == default)
+            if (timeInterval.Start == default)
                 throw new BusinessRuleException("Start time is required.");
 
-            if (endTime == default)
+            if (timeInterval.End == default)
                 throw new BusinessRuleException("End time is required.");
 
-            if (endTime <= startTime)
-                throw new BusinessRuleException("End time must be after start time.");
+            if (timeInterval.Start < DateTime.UtcNow)
+                throw new BusinessRuleException("Start time cannot be in the past.");
 
             Id = Guid.CreateVersion7();
             PatientId = patientId;
             DentistId = dentistId;
             DentalOfficeId = dentalOfficeId;
-            StartTime = startTime;
-            EndTime = endTime;
+            TimeInterval = timeInterval;
             Status = AppointmentStatus.Pending;
         }
 

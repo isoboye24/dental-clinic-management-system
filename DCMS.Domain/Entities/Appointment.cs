@@ -38,7 +38,7 @@ namespace DCMS.Domain.Entities
                 throw new BusinessRuleException("End time is required.");
 
             if (timeInterval.Start < DateTime.UtcNow)
-                throw new BusinessRuleException("Start time cannot be in the past.");
+                throw new BusinessRuleException("Start time must be earlier than end time.");
 
             Id = Guid.CreateVersion7();
             PatientId = patientId;
@@ -48,21 +48,33 @@ namespace DCMS.Domain.Entities
             Status = AppointmentStatus.Pending;
         }
 
-        public void Confirm()
+        public void Pending()
         {
             if (Status != AppointmentStatus.Pending)
             {
-                throw new BusinessRuleException("Only pending status can be confirmed");
+                throw new BusinessRuleException(
+                    "Only pending appointments can be Pending.");
             }
 
-            Status = AppointmentStatus.Confirmed;
+            Status = AppointmentStatus.Pending;
+        }
+        
+        public void Schedule()
+        {
+            if (Status != AppointmentStatus.Pending)
+            {
+                throw new BusinessRuleException(
+                    "Only pending appointments can be scheduled.");
+            }
+
+            Status = AppointmentStatus.Scheduled;
         }
 
         public void Complete()
         {
             if (Status != AppointmentStatus.Scheduled)
             {
-                throw new BusinessRuleException("Only scheduled status can be completed");
+                throw new BusinessRuleException("Only scheduled appointments can be completed");
             }
 
             Status = AppointmentStatus.Completed;
@@ -70,9 +82,11 @@ namespace DCMS.Domain.Entities
 
         public void Cancel()
         {
-            if (Status != AppointmentStatus.Pending || Status != AppointmentStatus.Confirmed)
+            if (Status != AppointmentStatus.Pending 
+                && Status != AppointmentStatus.Scheduled 
+                && Status != AppointmentStatus.Completed)
             {
-                throw new BusinessRuleException("Only pending and confirmed status can be cancelled");
+                throw new BusinessRuleException("Only pending or scheduled or completed appointments can be cancelled");
             }
 
             Status = AppointmentStatus.Cancelled;

@@ -45,13 +45,10 @@ namespace DCMS.Test.Domain.Entities
         [TestMethod]
         public void Constructor_ValidDentist_CreatesDentist()
         {
-            // Arrange
             var email = new Email("iso@gmail.com");
 
-            // Act
             var dentist = new Patient("Vincent", email);
 
-            // Assert
             Assert.AreEqual("Vincent", dentist.Name);
             Assert.AreEqual(email, dentist.Email);
         }

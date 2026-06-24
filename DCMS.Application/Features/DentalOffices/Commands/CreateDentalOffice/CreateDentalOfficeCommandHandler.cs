@@ -1,12 +1,13 @@
 ﻿using DCMS.Application.Contracts.Persistence;
 using DCMS.Application.Contracts.Repositories;
 using DCMS.Application.Exceptions;
+using DCMS.Application.Utilities;
 using DCMS.Domain.Entities;
 using FluentValidation;
 
 namespace DCMS.Application.Features.DentalOffices.Commands.CreateDentalOffice
 {
-    public class CreateDentalOfficeCommandHandler
+    public class CreateDentalOfficeCommandHandler : IRequestHandler<CreateDentalOfficeCommand, Guid>
     {
         private readonly IDentalOfficeRepository _repository;
         private readonly IUnitOfWork _unitOfWork;

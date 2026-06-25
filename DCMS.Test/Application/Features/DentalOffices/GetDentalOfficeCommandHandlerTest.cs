@@ -1,7 +1,9 @@
 ﻿using DCMS.Application.Contracts.Repositories;
+using DCMS.Application.Exceptions;
 using DCMS.Application.Features.DentalOffices.Queries.GetDentalOfficeDetail;
 using DCMS.Domain.Entities;
 using NSubstitute;
+using NSubstitute.ReturnsExtensions;
 
 namespace DCMS.Test.Application.Features.DentalOffices
 {
@@ -35,6 +37,18 @@ namespace DCMS.Test.Application.Features.DentalOffices
             Assert.IsNotNull(result);
             Assert.AreEqual(id, result.Id);
             Assert.AreEqual(dentalOffice.Name, result.Name);
+        }
+
+        [TestMethod]
+        public async Task Handle_DentalOfficeDoesNotExists_Throws()
+        {
+            var id = Guid.NewGuid();
+            var query = new GetDentalOfficeDetailQuery { Id = id };
+
+            _repository.GetById(id).ReturnsNull();
+
+            await Assert.ThrowsAsync<NotFoundException>(
+            () => _handler.Handle(query));
         }
     }
 }

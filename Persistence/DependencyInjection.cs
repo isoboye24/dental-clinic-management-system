@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DCMS.Application.Contracts.Repositories;
+using DCMS.Persistence.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Persistence
+namespace DCMS.Persistence
 {
-    public static class RegisterPersistenceServices
+    public static class DependencyInjection
     {
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services)
         {
@@ -12,6 +14,7 @@ namespace Persistence
                 options.UseSqlServer("DCMSConnectionString"));
 
             // Register other persistence-related services here if needed
+            services.AddScoped<IDentalOfficeRepository, DentalOfficeRepository>();
 
             return services;
         }

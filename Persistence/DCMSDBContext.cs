@@ -1,7 +1,7 @@
 ﻿using DCMS.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Persistence
+namespace DCMS.Persistence
 {
     public class DCMSDBContext : DbContext
     {

@@ -1,7 +1,7 @@
 ﻿using DCMS.Application.Contracts.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace Persistence.Repositories
+namespace DCMS.Persistence.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {

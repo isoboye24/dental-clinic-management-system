@@ -11,24 +11,15 @@ namespace DCMS.Application.Features.DentalOffices.Commands.CreateDentalOffice
     {
         private readonly IDentalOfficeRepository _repository;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IValidator<CreateDentalOfficeCommand> _validator;
 
-        public CreateDentalOfficeCommandHandler(IDentalOfficeRepository repository, IUnitOfWork unitOfWork,
-            IValidator<CreateDentalOfficeCommand> validator)
+        public CreateDentalOfficeCommandHandler(IDentalOfficeRepository repository, IUnitOfWork unitOfWork)
         {
             _repository = repository;
             _unitOfWork = unitOfWork;
-            _validator = validator;
         }
 
         public async Task<Guid> Handle(CreateDentalOfficeCommand command)
         {
-            var validationResult = await _validator.ValidateAsync(command);
-            if (!validationResult.IsValid)
-            {
-                throw new CustomValidationException(validationResult);
-            }
-
             var dentalOffice = new DentalOffice(command.Name);
             try
             {

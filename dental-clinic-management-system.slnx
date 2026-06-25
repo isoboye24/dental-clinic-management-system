@@ -6,8 +6,9 @@
   <Folder Name="/Domain/">
     <Project Path="DCMS.Domain/DCMS.Domain.csproj" />
   </Folder>
-  <Folder Name="/Infrastructure/" />
-  <Folder Name="/Persistence/" />
+  <Folder Name="/Infrastructure/">
+    <Project Path="Persistence/Persistence.csproj" Id="492f61a5-dc8c-46c4-bc50-622e2dbad778" />
+  </Folder>
   <Folder Name="/Tests/">
     <Project Path="DCMS.Test/DCMS.Test.csproj" Id="b7a5a2bb-c804-4ef7-aab4-85ceb135886a" />
   </Folder>

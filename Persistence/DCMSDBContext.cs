@@ -1,0 +1,24 @@
+﻿using DCMS.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+
+namespace Persistence
+{
+    public class DCMSDBContext : DbContext
+    {
+        public DCMSDBContext(DbContextOptions<DCMSDBContext> options) : base(options)
+        {
+            
+        }
+
+        protected DCMSDBContext() { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DCMSDBContext).Assembly);
+        }
+
+        public DbSet<DentalOffice> DentalOffices { get; set; }
+    }
+}

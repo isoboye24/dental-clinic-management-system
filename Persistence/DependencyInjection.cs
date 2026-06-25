@@ -1,5 +1,7 @@
-﻿using DCMS.Application.Contracts.Repositories;
+﻿using DCMS.Application.Contracts.Persistence;
+using DCMS.Application.Contracts.Repositories;
 using DCMS.Persistence.Repositories;
+using DCMS.Persistence.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,6 +17,7 @@ namespace DCMS.Persistence
 
             // Register other persistence-related services here if needed
             services.AddScoped<IDentalOfficeRepository, DentalOfficeRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWorkEFCore>();
 
             return services;
         }

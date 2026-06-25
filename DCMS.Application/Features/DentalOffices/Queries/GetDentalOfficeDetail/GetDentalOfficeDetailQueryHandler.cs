@@ -21,13 +21,7 @@ namespace DCMS.Application.Features.DentalOffices.Queries.GetDentalOfficeDetail
                 throw new NotFoundException();
             }
 
-            var dto = new DentalOfficeDetailDTO
-            {
-                Id = dentalOffice.Id,
-                Name = dentalOffice.Name
-            };
-
-            return dto;
+            return dentalOffice.ToDTO();
         }
     }
 }

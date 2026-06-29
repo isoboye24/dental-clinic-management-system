@@ -1,5 +1,7 @@
 <Solution>
-  <Folder Name="/API/" />
+  <Folder Name="/API/">
+    <Project Path="DCMS.API/DCMS.API.csproj" Id="59fa6978-a7dc-4c81-9ccf-a6716ee3f477" />
+  </Folder>
   <Folder Name="/Application/">
     <Project Path="DCMS.Application/DCMS.Application.csproj" Id="4cb3317f-2698-423e-b076-e8cb5e9bae41" />
   </Folder>
@@ -8,6 +10,11 @@
   </Folder>
   <Folder Name="/Infrastructure/">
     <Project Path="Persistence/DCMS.Persistence.csproj" Id="492f61a5-dc8c-46c4-bc50-622e2dbad778" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".env" />
+    <File Path=".env.example" />
+    <File Path="docker-compose.yml" />
   </Folder>
   <Folder Name="/Tests/">
     <Project Path="DCMS.Test/DCMS.Test.csproj" Id="b7a5a2bb-c804-4ef7-aab4-85ceb135886a" />

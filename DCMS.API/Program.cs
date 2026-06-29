@@ -2,7 +2,7 @@ using DCMS.Application;
 using DCMS.Persistence;
 using DotNetEnv;
 
-Env.Load(); // Loads variables from the .env file
+Env.TraversePath().Load(); // Loads variables from the .env file
 
 var builder = WebApplication.CreateBuilder(args);
 

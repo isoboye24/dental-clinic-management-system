@@ -1,3 +1,4 @@
+using DCMS.API.Middlewares;
 using DCMS.Application;
 using DCMS.Persistence;
 using DotNetEnv;
@@ -22,6 +23,8 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+app.UseCustomExceptionHandler();
 
 app.UseHttpsRedirection();
 

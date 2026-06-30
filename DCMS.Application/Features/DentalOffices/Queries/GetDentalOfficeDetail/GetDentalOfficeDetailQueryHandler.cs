@@ -18,7 +18,8 @@ namespace DCMS.Application.Features.DentalOffices.Queries.GetDentalOfficeDetail
 
             if (dentalOffice is null)
             {
-                throw new NotFoundException();
+                throw new NotFoundException(
+                        $"Dental office with id '{request.Id}' was not found.");
             }
 
             return dentalOffice.ToDTO();

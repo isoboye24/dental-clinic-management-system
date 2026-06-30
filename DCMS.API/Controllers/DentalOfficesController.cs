@@ -21,11 +21,8 @@ namespace DCMS.API.Controllers
         public async Task<IActionResult> Create(CreateDentalOfficeDTO createDentalOfficeDTO)
         {
             var command = new CreateDentalOfficeCommand { Name = createDentalOfficeDTO.Name};
-            var id = await _mediator.Send(command);
-            return CreatedAtAction(
-                nameof(GetById),
-                new { id },
-                null);
+            await _mediator.Send(command);
+            return Ok();
         }
 
         [HttpGet("{id}")]
@@ -37,7 +34,7 @@ namespace DCMS.API.Controllers
             {
                 return NotFound();
             }
-            return Ok(result);
+            return result;
         }
 }
 }

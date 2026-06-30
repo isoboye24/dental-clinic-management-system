@@ -1,0 +1,13 @@
+@Host = https://localhost:7023/api/dentaloffices
+
+GET {{Host}}/019F183F-BD17-74A4-B564-B696C48DC608
+ACCEPT: application/json
+
+POST {{Host}}
+Content-type: application/json
+
+{
+  "name": "Dental Office 1"
+}
+
+###

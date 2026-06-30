@@ -5,7 +5,7 @@ ACCEPT: application/json
 
 ###
 
-GET {{Host}}/019F183F-BD17-74A4-B564-B696C48DC608
+GET {{Host}}/019f1a44-442c-77c5-8f19-028ebc7be2ad
 ACCEPT: application/json
 
 ###
@@ -14,7 +14,7 @@ POST {{Host}}
 Content-type: application/json
 
 {
-  "name": "Dental Office 1"
+  "name": "Dental Office 2"
 }
 
 ###

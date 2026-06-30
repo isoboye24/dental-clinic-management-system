@@ -1,5 +1,6 @@
 ﻿using DCMS.Application.Features.DentalOffices.Commands.CreateDentalOffice;
 using DCMS.Application.Features.DentalOffices.Queries.GetDentalOfficeDetail;
+using DCMS.Application.Features.DentalOffices.Queries.GetDentalOfficesList;
 using DCMS.Application.Utilities;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,6 +16,8 @@ namespace DCMS.Application
 
             services.AddScoped<IRequestHandler<CreateDentalOfficeCommand, Guid>, CreateDentalOfficeCommandHandler>();
             services.AddScoped<IRequestHandler<GetDentalOfficeDetailQuery, DentalOfficeDetailDTO>, GetDentalOfficeDetailQueryHandler>();
+
+            services.AddScoped<IRequestHandler<GetDentalOfficeListQuery, List<DentalOfficesListDTO>>, GetDentalOfficesListQueryHandler>();
 
             return services;
         }

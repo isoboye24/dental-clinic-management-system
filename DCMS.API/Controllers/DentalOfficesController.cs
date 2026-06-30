@@ -1,6 +1,7 @@
 ﻿using DCMS.API.DTOs.DentalOffices;
 using DCMS.Application.Features.DentalOffices.Commands.CreateDentalOffice;
 using DCMS.Application.Features.DentalOffices.Queries.GetDentalOfficeDetail;
+using DCMS.Application.Features.DentalOffices.Queries.GetDentalOfficesList;
 using DCMS.Application.Utilities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -36,5 +37,15 @@ namespace DCMS.API.Controllers
             }
             return result;
         }
-}
+
+
+        [HttpGet]
+        public async Task<ActionResult<List<DentalOfficesListDTO>>> GetAll()
+        {
+            var query = new GetDentalOfficeListQuery();
+            var result = await _mediator.Send(query);
+            return result;
+        }
+
+    }
 }

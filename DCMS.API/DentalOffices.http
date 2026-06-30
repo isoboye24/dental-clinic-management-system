@@ -1,5 +1,10 @@
 @Host = https://localhost:7023/api/dentaloffices
 
+GET {{Host}}
+ACCEPT: application/json
+
+###
+
 GET {{Host}}/019F183F-BD17-74A4-B564-B696C48DC608
 ACCEPT: application/json
 

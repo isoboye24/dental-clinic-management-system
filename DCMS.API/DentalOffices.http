@@ -18,3 +18,10 @@ Content-type: application/json
 }
 
 ###
+
+PUT {{Host}}/019f1a44-442c-77c5-8f19-028ebc7be2ad
+Content-type: application/json
+
+{
+  "name": "Dental Office 2 - New"
+}

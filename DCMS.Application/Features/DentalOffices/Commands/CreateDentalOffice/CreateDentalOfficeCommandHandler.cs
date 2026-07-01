@@ -1,9 +1,7 @@
 ﻿using DCMS.Application.Contracts.Persistence;
 using DCMS.Application.Contracts.Repositories;
-using DCMS.Application.Exceptions;
 using DCMS.Application.Utilities;
 using DCMS.Domain.Entities;
-using FluentValidation;
 
 namespace DCMS.Application.Features.DentalOffices.Commands.CreateDentalOffice
 {

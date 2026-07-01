@@ -1,5 +1,6 @@
 ﻿using DCMS.API.DTOs.DentalOffices;
 using DCMS.Application.Features.DentalOffices.Commands.CreateDentalOffice;
+using DCMS.Application.Features.DentalOffices.Commands.UpdateDentalOffice;
 using DCMS.Application.Features.DentalOffices.Queries.GetDentalOfficeDetail;
 using DCMS.Application.Features.DentalOffices.Queries.GetDentalOfficesList;
 using DCMS.Application.Utilities;
@@ -47,5 +48,17 @@ namespace DCMS.API.Controllers
             return result;
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id, UpdateDentalOfficeDTO updateDentalOfficeDTO)
+        {
+            var command = new UpdateDentalOfficeCommand 
+            { 
+                Id = id, 
+                Name = updateDentalOfficeDTO.Name 
+            };
+
+            await _mediator.Send(command);
+            return NoContent();
+        }
     }
 }

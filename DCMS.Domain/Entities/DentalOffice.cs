@@ -15,11 +15,17 @@ namespace DCMS.Domain.Entities
             Id = Guid.CreateVersion7();
         }
 
+        public void UpdateName(string name)
+        {
+            ValidateName(name);
+            Name = name;
+        }
+
         private static void ValidateName(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new BusinessRuleException("Dentist name is required.");
+                throw new BusinessRuleException("Dentist's name is required.");
             }
         }
     }

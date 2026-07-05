@@ -13,7 +13,7 @@ namespace DCMS.Test.Domain.Entities
                 () => new DentalOffice(null!));
 
             Assert.AreEqual(
-                "Dentist name is required.",
+                "Dentist's name is required.",
                 ex.Message);
         }
     }

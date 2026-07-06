@@ -1,8 +1,10 @@
 ﻿using DCMS.Application.Contracts.Persistence;
 using DCMS.Application.Contracts.Repositories;
+using DCMS.Application.Exceptions;
 using DCMS.Application.Features.DentalOffices.Commands.UpdateDentalOffice;
 using DCMS.Domain.Entities;
 using NSubstitute;
+using NSubstitute.ReturnsExtensions;
 
 namespace DCMS.Test.Application.Features.DentalOffices
 {
@@ -39,5 +41,21 @@ namespace DCMS.Test.Application.Features.DentalOffices
             await _repository.Received(1).Update(dentalOffice);
             await _unitOfWork.Received(1).Commit();
         }
-}
+
+        [TestMethod]
+        public async Task Handle_WhenDentalOfficeDoesNotExist_Throws()
+        {
+            var command = new UpdateDentalOfficeCommand
+            {
+                Id = Guid.NewGuid(),
+                Name = "Updated Dental Office"
+            };
+
+            _repository.GetById(command.Id)
+                       .Returns((DentalOffice?)null);
+
+            await Assert.ThrowsExactlyAsync<NotFoundException>(
+                () => _handler.Handle(command));
+        }
+    }
 }

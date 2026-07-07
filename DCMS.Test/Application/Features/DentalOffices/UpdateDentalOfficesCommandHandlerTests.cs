@@ -4,6 +4,7 @@ using DCMS.Application.Exceptions;
 using DCMS.Application.Features.DentalOffices.Commands.UpdateDentalOffice;
 using DCMS.Domain.Entities;
 using NSubstitute;
+using NSubstitute.ExceptionExtensions;
 using NSubstitute.ReturnsExtensions;
 
 namespace DCMS.Test.Application.Features.DentalOffices
@@ -57,5 +58,24 @@ namespace DCMS.Test.Application.Features.DentalOffices
             await Assert.ThrowsExactlyAsync<NotFoundException>(
                 () => _handler.Handle(command));
         }
-    }
+
+        [TestMethod]
+        public async Task Handle_WhenThereIsAnExceptionDuringUpdate_Throws()
+        {
+            var dentalOffice = new DentalOffice("Dental Office 1");
+            var id = dentalOffice.Id;
+            var command = new UpdateDentalOfficeCommand
+            {
+                Id = dentalOffice.Id,
+                Name = "Updated Dental Office"
+            };
+            _repository.GetById(id).Returns(dentalOffice);
+            _repository.Update(dentalOffice).Throws(new InvalidOperationException("Exception"));
+
+            await Assert.ThrowsExactlyAsync<InvalidOperationException>(
+                () => _handler.Handle(command));
+
+            await _unitOfWork.Received(1).Rollback();
+        }
+}
 }

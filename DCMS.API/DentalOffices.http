@@ -25,3 +25,7 @@ Content-type: application/json
 {
   "name": "Dental Office 2 - New"
 }
+
+###
+
+DELETE {{Host}}/019F183F-BD17-74A4-B564-B696C48DC608

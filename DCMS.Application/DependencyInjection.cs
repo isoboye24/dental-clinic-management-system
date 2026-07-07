@@ -1,4 +1,5 @@
 ﻿using DCMS.Application.Features.DentalOffices.Commands.CreateDentalOffice;
+using DCMS.Application.Features.DentalOffices.Commands.DeleteDentalOffice;
 using DCMS.Application.Features.DentalOffices.Commands.UpdateDentalOffice;
 using DCMS.Application.Features.DentalOffices.Queries.GetDentalOfficeDetail;
 using DCMS.Application.Features.DentalOffices.Queries.GetDentalOfficesList;
@@ -20,6 +21,7 @@ namespace DCMS.Application
 
             services.AddScoped<IRequestHandler<GetDentalOfficeListQuery, List<DentalOfficesListDTO>>, GetDentalOfficesListQueryHandler>();
             services.AddScoped<IRequestHandler<UpdateDentalOfficeCommand>, UpdateDentalOfficeCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteDentalOfficeCommand>, DeleteDentalOfficeCommandHandler>();
 
             return services;
         }

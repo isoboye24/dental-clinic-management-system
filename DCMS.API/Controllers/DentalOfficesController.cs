@@ -1,5 +1,6 @@
 ﻿using DCMS.API.DTOs.DentalOffices;
 using DCMS.Application.Features.DentalOffices.Commands.CreateDentalOffice;
+using DCMS.Application.Features.DentalOffices.Commands.DeleteDentalOffice;
 using DCMS.Application.Features.DentalOffices.Commands.UpdateDentalOffice;
 using DCMS.Application.Features.DentalOffices.Queries.GetDentalOfficeDetail;
 using DCMS.Application.Features.DentalOffices.Queries.GetDentalOfficesList;
@@ -57,6 +58,14 @@ namespace DCMS.API.Controllers
                 Name = updateDentalOfficeDTO.Name 
             };
 
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var command = new DeleteDentalOfficeCommand { Id = id };
             await _mediator.Send(command);
             return NoContent();
         }

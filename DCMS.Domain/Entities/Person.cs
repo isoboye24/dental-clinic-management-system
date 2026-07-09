@@ -9,6 +9,11 @@ namespace DCMS.Domain.Entities
         public string Name { get; protected set; } = null!;
         public Email Email { get; protected set; } = null!;
 
+        protected Person()
+        {
+            
+        }
+
         protected Person(string name, Email email)
         {
             ValidateName(name);

@@ -20,6 +20,7 @@ namespace DCMS.Persistence
 
             // Register other persistence-related services here if needed
             services.AddScoped<IDentalOfficeRepository, DentalOfficeRepository>();
+            services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWorkEFCore>();
 
             return services;

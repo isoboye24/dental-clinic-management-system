@@ -6,6 +6,11 @@ namespace DCMS.Domain.ValueObjects
     public record Email
     {
         public string Value { get; } = null!;
+
+        private Email()
+        {
+        }
+
         public Email(string email)
         {
             if (string.IsNullOrWhiteSpace(email))

@@ -1,5 +1,6 @@
 ﻿using DCMS.API.DTOs.Patients;
 using DCMS.Application.Features.Patients.Commands.CreatePatients;
+using DCMS.Application.Features.Patients.Queries.GetPatientsList;
 using DCMS.Application.Utilities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,6 +26,14 @@ namespace DCMS.API.Controllers
             };
             await _mediator.Send(command);
             return Ok();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<PatientListDTO>>> GetAll()
+        {
+            var query = new GetPatientListQuery();
+            var result = await _mediator.Send(query);
+            return result;
         }
     }
 }

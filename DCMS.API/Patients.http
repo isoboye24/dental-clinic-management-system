@@ -5,7 +5,7 @@ ACCEPT: application/json
 
 ###
 
-GET {{Host}}/019f1a44-442c-77c5-8f19-028ebc7be2ad
+GET {{Host}}/9f8218ad-71b2-49e8-1dbe-08dede677b43
 ACCEPT: application/json
 
 ###
@@ -14,13 +14,13 @@ POST {{Host}}
 Content-type: application/json
 
 {
-  "name": "John Smith",
-  "email": "johnsmith@gmail.com"
+  "name": "Marina Lai",
+  "email": "marinalai@gmail.com"
 }
 
 ###
 
-PUT {{Host}}/019f1a44-442c-77c5-8f19-028ebc7be2ad
+PUT {{Host}}/9f8218ad-71b2-49e8-1dbe-08dede677b43
 Content-type: application/json
 
 {

@@ -33,9 +33,9 @@ namespace DCMS.Test.Application.Features.DentalOffices
 
             var result = await _handler.Handle(command);
 
+            Assert.AreEqual(dentalOffice.Id, result);
             await _repository.Received(1).Add(Arg.Any<DentalOffice>());
             await _unitOfWork.Received(1).Commit();
-            Assert.AreEqual(dentalOffice.Id, result);
         }
 
         [TestMethod]

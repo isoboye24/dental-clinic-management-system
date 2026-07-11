@@ -2,7 +2,7 @@
 
 namespace DCMS.Application.Features.DentalOffices.Queries.GetDentalOfficeDetail
 {
-    public static class MapperExtensions
+    internal static class MapperExtensions
     {
         public static DentalOfficeDetailDTO ToDTO(this DentalOffice dentalOffice)
         {

@@ -1,6 +1,7 @@
 ﻿using DCMS.API.DTOs.Patients;
 using DCMS.API.Utilities;
 using DCMS.Application.Features.Patients.Commands.CreatePatients;
+using DCMS.Application.Features.Patients.Queries.GetPatientsDetail;
 using DCMS.Application.Features.Patients.Queries.GetPatientsList;
 using DCMS.Application.Utilities;
 using Microsoft.AspNetCore.Mvc;
@@ -35,6 +36,13 @@ namespace DCMS.API.Controllers
             var result = await _mediator.Send(query);
             HttpContext.InsertPaginationInformationInHeader(result.TotalAmountOfRecords);
             return result.Elements;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<PatientDetailDTO>> GetById(Guid id)
+        {
+            var query = new GetPatientDetailQuery { Id = id };
+            return await _mediator.Send(query);
         }
     }
 }

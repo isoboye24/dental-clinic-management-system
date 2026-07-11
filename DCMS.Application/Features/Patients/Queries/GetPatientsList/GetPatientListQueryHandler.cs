@@ -1,9 +1,10 @@
 ﻿using DCMS.Application.Contracts.Repositories;
 using DCMS.Application.Utilities;
+using DCMS.Application.Utilities.Common;
 
 namespace DCMS.Application.Features.Patients.Queries.GetPatientsList
 {
-    public class GetPatientListQueryHandler : IRequestHandler<GetPatientListQuery, List<PatientListDTO>>
+    public class GetPatientListQueryHandler : IRequestHandler<GetPatientListQuery, PaginatedDTO<PatientListDTO>>
     {
         private readonly IPatientRepository _repository;
         public GetPatientListQueryHandler(IPatientRepository repository)
@@ -11,11 +12,19 @@ namespace DCMS.Application.Features.Patients.Queries.GetPatientsList
             _repository = repository;
         }
 
-        public async Task<List<PatientListDTO>> Handle(GetPatientListQuery request)
+        public async Task<PaginatedDTO<PatientListDTO>> Handle(GetPatientListQuery request)
         {
-            var patients = await _repository.GetAll();
+            var patients = await _repository.GetFiltered(request);
+            var totalAmountOfRecords = await _repository.GetTotalAmountOfRecords();
             var patientList = patients.Select(p => p.ToDTO()).ToList();
-            return patientList;
+
+            var paginatedResult = new PaginatedDTO<PatientListDTO>
+            {
+                Elements = patientList,
+                TotalAmountOfRecords = totalAmountOfRecords
+            };
+
+            return paginatedResult;
         }
     }
 }

@@ -1,0 +1,13 @@
+﻿namespace DCMS.Persistence.Utilities
+{
+    internal static class IQueryableExtensions
+    {
+        internal static IQueryable<T> Paginate<T>(this IQueryable<T> queryable, 
+            int page, int recordsPerPage)
+        {
+            return queryable
+                .Skip((page - 1) * recordsPerPage)
+                .Take(recordsPerPage);
+        }
+    }
+}

@@ -1,6 +1,6 @@
 @Host = https://localhost:7023/api/patients
 
-GET {{Host}}
+GET {{Host}}?page=1&recordsPerPage=2
 ACCEPT: application/json
 
 ###

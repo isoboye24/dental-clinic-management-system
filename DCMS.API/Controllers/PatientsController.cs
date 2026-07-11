@@ -1,4 +1,5 @@
 ﻿using DCMS.API.DTOs.Patients;
+using DCMS.API.Utilities;
 using DCMS.Application.Features.Patients.Commands.CreatePatients;
 using DCMS.Application.Features.Patients.Queries.GetPatientsList;
 using DCMS.Application.Utilities;
@@ -29,11 +30,11 @@ namespace DCMS.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<PatientListDTO>>> GetAll()
+        public async Task<ActionResult<List<PatientListDTO>>> GetAll([FromQuery] GetPatientListQuery query)
         {
-            var query = new GetPatientListQuery();
             var result = await _mediator.Send(query);
-            return result;
+            HttpContext.InsertPaginationInformationInHeader(result.TotalAmountOfRecords);
+            return result.Elements;
         }
     }
 }

@@ -34,6 +34,11 @@ namespace DCMS.Persistence.Repositories
             return await _db.Set<T>().FindAsync(id);
         }
 
+        public async Task<int> GetTotalAmountOfRecords()
+        {
+            return await _db.Set<T>().CountAsync();
+        }
+
         public Task Update(T entity)
         {
             _db.Update(entity);

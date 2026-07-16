@@ -37,6 +37,6 @@ namespace DCMS.Application.Features.DentalOffices.Commands.UpdateDentalOffice
                 await _unitOfWork.Rollback();
                 throw;
             }
+        }
     }
-}
 }

@@ -1,8 +1,8 @@
 @Host = https://localhost:7023/api/patients
 
-### Filter by email
+### Get all
 
-GET {{Host}}?page=1&recordsPerPage=2&email=marinalai@gmail.com
+GET {{Host}}
 ACCEPT: application/json
 
 ### Filter by name
@@ -27,11 +27,12 @@ Content-type: application/json
 
 ### Update by Id
 
-PUT {{Host}}/9f8218ad-71b2-49e8-1dbe-08dede677b43
+PUT {{Host}}/7e137ce8-ab23-4fe0-e8de-08dedf8c34a9
 Content-type: application/json
 
 {
-  "name": "Dental Office 2 - New"
+  "name": "David Lai",
+  "email": "davidlai@gmail.com"
 }
 
 ### Delete by Id

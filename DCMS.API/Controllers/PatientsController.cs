@@ -1,5 +1,6 @@
 ﻿using DCMS.API.DTOs.Patients;
 using DCMS.API.Utilities;
+using DCMS.Application.Features.Patients.Commands.UpdatePatient;
 using DCMS.Application.Features.Patients.Commands.CreatePatients;
 using DCMS.Application.Features.Patients.Queries.GetPatientsDetail;
 using DCMS.Application.Features.Patients.Queries.GetPatientsList;
@@ -43,6 +44,20 @@ namespace DCMS.API.Controllers
         {
             var query = new GetPatientDetailQuery { Id = id };
             return await _mediator.Send(query);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id, UpdatePatientDTO updatePatientDTO)
+        {
+            var command = new UpdatePatientCommand
+            {
+                Id = id,
+                Name = updatePatientDTO.Name,
+                Email = updatePatientDTO.Email
+            };
+
+            await _mediator.Send(command);
+            return NoContent();
         }
     }
 }

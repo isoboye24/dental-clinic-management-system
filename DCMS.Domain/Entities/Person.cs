@@ -17,9 +17,7 @@ namespace DCMS.Domain.Entities
         protected Person(string name, Email email)
         {
             ValidateName(name);
-
-            if (email is null)
-                throw new BusinessRuleException("Email is required.");
+            ValidateEmail(email);
 
             Name = name.Trim();
             Email = email;
@@ -29,6 +27,24 @@ namespace DCMS.Domain.Entities
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new BusinessRuleException("Name is required.");
+        }
+
+        private static void ValidateEmail(Email email)
+        {
+            if (email is null)
+                throw new BusinessRuleException("Email is required.");
+        }
+
+        public void UpdateName(string name)
+        {
+            ValidateName(name);
+            Name = name.Trim();
+        }
+
+        public void UpdateEmail(Email email)
+        {
+            ValidateEmail(email);
+            Email = email;
         }
     }
 }

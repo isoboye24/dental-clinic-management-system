@@ -1,7 +1,8 @@
 ﻿using DCMS.API.DTOs.Patients;
 using DCMS.API.Utilities;
-using DCMS.Application.Features.Patients.Commands.UpdatePatient;
 using DCMS.Application.Features.Patients.Commands.CreatePatients;
+using DCMS.Application.Features.Patients.Commands.DeletePatient;
+using DCMS.Application.Features.Patients.Commands.UpdatePatient;
 using DCMS.Application.Features.Patients.Queries.GetPatientsDetail;
 using DCMS.Application.Features.Patients.Queries.GetPatientsList;
 using DCMS.Application.Utilities;
@@ -56,6 +57,14 @@ namespace DCMS.API.Controllers
                 Email = updatePatientDTO.Email
             };
 
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var command = new DeletePatientCommand { Id = id };
             await _mediator.Send(command);
             return NoContent();
         }

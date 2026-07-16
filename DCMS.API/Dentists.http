@@ -21,13 +21,13 @@ POST {{Host}}
 Content-type: application/json
 
 {
-  "name": "Dr. Sacha Porochock",
-  "email": "sachaporochock@gmail.com"
+  "name": "Dr. Rose Nwosu",
+  "email": "rosenwosu@gmail.com"
 }
 
 ### Update by Id
 
-PUT {{Host}}/7e137ce8-ab23-4fe0-e8de-08dedf8c34a9
+PUT {{Host}}/3D335CDF-3340-4176-65F6-08DEE3532835
 Content-type: application/json
 
 {

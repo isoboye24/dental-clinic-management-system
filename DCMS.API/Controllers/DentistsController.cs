@@ -1,7 +1,9 @@
 ﻿using DCMS.API.DTOs.Dentists;
+using DCMS.API.Utilities;
 using DCMS.Application.Features.Dentists.Commands.CreateDentist;
-using Microsoft.AspNetCore.Mvc;
+using DCMS.Application.Features.Dentists.Queries.GetDentistsList;
 using DCMS.Application.Utilities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DCMS.API.Controllers
 {
@@ -25,6 +27,14 @@ namespace DCMS.API.Controllers
             };
             await _mediator.Send(command);
             return Ok();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<DentistListDTO>>> GetAll([FromQuery] GetDentistListQuery query)
+        {
+            var result = await _mediator.Send(query);
+            HttpContext.InsertPaginationInformationInHeader(result.TotalAmountOfRecords);
+            return result.Elements;
         }
     }
 }

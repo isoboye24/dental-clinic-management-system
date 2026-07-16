@@ -8,5 +8,10 @@ namespace DCMS.Domain.Entities
         : base(name, email)
         {
         }
+
+        private Dentist()
+        {
+            
+        }
     }    
 }

@@ -15,4 +15,8 @@
     <ProjectReference Include="..\DCMS.Domain\DCMS.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Dentists\Commands\" />
+  </ItemGroup>
+
 </Project>

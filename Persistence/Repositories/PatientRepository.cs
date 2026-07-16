@@ -16,7 +16,19 @@ namespace DCMS.Persistence.Repositories
 
         public async Task<IEnumerable<Patient>> GetFiltered(PatientsFilterDTO filter)
         {
-            return await _db.Patients
+            var query = _db.Patients.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(filter.Name))
+            {
+                query = query.Where(p => p.Name.Contains(filter.Name));
+            }
+
+            if (!string.IsNullOrWhiteSpace(filter.Email))
+            {
+                query = query.Where(p => p.Email.Value.Contains(filter.Email));
+            }
+
+            return await query
                 .OrderBy(x => x.Name)
                 .Paginate(filter.Page, filter.RecordsPerPage)
                 .ToListAsync();

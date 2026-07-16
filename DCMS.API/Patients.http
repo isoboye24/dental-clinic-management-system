@@ -1,14 +1,21 @@
 @Host = https://localhost:7023/api/patients
 
-GET {{Host}}?page=1&recordsPerPage=2
+### Filter by email
+
+GET {{Host}}?page=1&recordsPerPage=2&email=marinalai@gmail.com
 ACCEPT: application/json
 
-###
+### Filter by name
+
+GET {{Host}}?page=1&recordsPerPage=2&name=John+Smith
+ACCEPT: application/json
+
+### Search by Id
 
 GET {{Host}}/5c72ea5b-2681-4cb2-ffca-08dede77b5bb
 ACCEPT: application/json
 
-###
+### Insert
 
 POST {{Host}}
 Content-type: application/json
@@ -18,7 +25,7 @@ Content-type: application/json
   "email": "marinalai@gmail.com"
 }
 
-###
+### Update by Id
 
 PUT {{Host}}/9f8218ad-71b2-49e8-1dbe-08dede677b43
 Content-type: application/json
@@ -27,6 +34,6 @@ Content-type: application/json
   "name": "Dental Office 2 - New"
 }
 
-###
+### Delete by Id
 
 DELETE {{Host}}/019F183F-BD17-74A4-B564-B696C48DC608

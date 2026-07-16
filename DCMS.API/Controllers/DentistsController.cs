@@ -2,6 +2,7 @@
 using DCMS.API.Utilities;
 using DCMS.Application.Features.Dentists.Commands.CreateDentist;
 using DCMS.Application.Features.Dentists.Queries.GetDentistsList;
+using DCMS.Application.Features.Dentists.Queries.GetDentistsDetail;
 using DCMS.Application.Utilities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -35,6 +36,13 @@ namespace DCMS.API.Controllers
             var result = await _mediator.Send(query);
             HttpContext.InsertPaginationInformationInHeader(result.TotalAmountOfRecords);
             return result.Elements;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<DentistDetailDTO>> GetDetail(Guid id)
+        {
+            var query = new GetDentistDetailQuery { Id = id };
+            return await _mediator.Send(query);
         }
     }
 }

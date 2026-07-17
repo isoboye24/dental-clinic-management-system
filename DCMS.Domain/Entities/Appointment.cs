@@ -11,10 +11,15 @@ namespace DCMS.Domain.Entities
         public Guid DentistId { get; private set; }
         public Guid DentalOfficeId { get; private set; }
         public AppointmentStatus Status { get; private set; }
-        public TimeInterval TimeInterval { get; private set; }
+        public TimeInterval TimeInterval { get; private set; } = null!;
         public Patient? Patient { get; private set; }
         public Dentist? Dentist { get; private set; }
         public DentalOffice? DentalOffice { get; private set; }
+
+        private Appointment()
+        {
+            
+        }
 
         public Appointment(
            Guid patientId,

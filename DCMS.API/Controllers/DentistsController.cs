@@ -1,9 +1,10 @@
 ﻿using DCMS.API.DTOs.Dentists;
 using DCMS.API.Utilities;
 using DCMS.Application.Features.Dentists.Commands.CreateDentist;
+using DCMS.Application.Features.Dentists.Commands.UpdateDentist;
 using DCMS.Application.Features.Dentists.Queries.GetDentistsDetail;
 using DCMS.Application.Features.Dentists.Queries.GetDentistsList;
-using DCMS.Application.Features.Dentists.Commands.UpdateDentist;
+using DCMS.Application.Features.Dentists.Commands.DeleteDentist;
 using DCMS.Application.Utilities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -60,5 +61,13 @@ namespace DCMS.API.Controllers
             return NoContent();
         }
 
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var command = new DeleteDentistCommand { Id = id };
+            await _mediator.Send(command);
+            return NoContent();
+        }
     }
 }

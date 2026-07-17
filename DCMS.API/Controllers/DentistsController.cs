@@ -1,8 +1,9 @@
 ﻿using DCMS.API.DTOs.Dentists;
 using DCMS.API.Utilities;
 using DCMS.Application.Features.Dentists.Commands.CreateDentist;
-using DCMS.Application.Features.Dentists.Queries.GetDentistsList;
 using DCMS.Application.Features.Dentists.Queries.GetDentistsDetail;
+using DCMS.Application.Features.Dentists.Queries.GetDentistsList;
+using DCMS.Application.Features.Dentists.Commands.UpdateDentist;
 using DCMS.Application.Utilities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -44,5 +45,20 @@ namespace DCMS.API.Controllers
             var query = new GetDentistDetailQuery { Id = id };
             return await _mediator.Send(query);
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id, UpdateDentistDTO updateDentistDTO)
+        {
+            var command = new UpdateDentistCommand
+            {
+                Id = id,
+                Name = updateDentistDTO.Name,
+                Email = updateDentistDTO.Email
+            };
+
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
     }
 }

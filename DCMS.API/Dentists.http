@@ -21,8 +21,8 @@ POST {{Host}}
 Content-type: application/json
 
 {
-  "name": "Dr. Rose Nwosu",
-  "email": "rosenwosu@gmail.com"
+  "name": "Dr. Ernest Dan-Obu",
+  "email": "ernestdanobu@gmail.com"
 }
 
 ### Update by Id
@@ -31,8 +31,8 @@ PUT {{Host}}/3D335CDF-3340-4176-65F6-08DEE3532835
 Content-type: application/json
 
 {
-  "name": "David Lai",
-  "email": "davidlai@gmail.com"
+  "name": "Dr. Sacha Porochock Junior",
+  "email": "sachaporochockjunior@gmail.com"
 }
 
 ### Delete by Id

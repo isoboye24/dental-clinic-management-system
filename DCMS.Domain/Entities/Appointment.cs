@@ -42,8 +42,8 @@ namespace DCMS.Domain.Entities
             if (timeInterval.End == default)
                 throw new BusinessRuleException("End time is required.");
 
-            if (timeInterval.Start < DateTime.UtcNow)
-                throw new BusinessRuleException("Start time must be earlier than end time.");
+            //if (timeInterval.Start < DateTime.UtcNow)
+            //    throw new BusinessRuleException("Start time must be earlier than end time.");
 
             Id = Guid.CreateVersion7();
             PatientId = patientId;

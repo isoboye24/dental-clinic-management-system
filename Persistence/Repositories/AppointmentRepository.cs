@@ -10,7 +10,7 @@ namespace DCMS.Persistence.Repositories
         private readonly DCMSDBContext _db;
         public AppointmentRepository(DCMSDBContext db) : base(db)
         {
-           _db = db;
+            _db = db;
         }
 
         public async Task<bool> OverlapExists(Guid dentistId, DateTime startDate, DateTime endDate)
@@ -20,5 +20,13 @@ namespace DCMS.Persistence.Repositories
             ).AnyAsync();
         }
 
+        new public async Task<Appointment?> GetById(Guid id)
+        {
+            return await _db.Appointments
+                .Include(x => x.Dentist)
+                .Include(x => x.Patient)
+                .Include(x => x.DentalOffice)
+                .FirstOrDefaultAsync(x => x.Id == id);
+        }
     }
 }

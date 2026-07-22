@@ -1,4 +1,5 @@
 ﻿using DCMS.API.DTOs.Appointments;
+using DCMS.Application.Features.Appointments.Queries.GetAppointmentDetail;
 using DCMS.Application.Features.Appointments.Commands.CreateAppointment;
 using DCMS.Application.Utilities;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,14 @@ namespace DCMS.API.Controllers
             };
             var result = await _mediator.Send(command);
             return Ok();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var query = new GetAppointmentDetailQuery { Id = id };
+            var result = await _mediator.Send(query);
+            return Ok(result);
         }
     }
 }

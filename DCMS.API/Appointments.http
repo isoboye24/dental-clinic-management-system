@@ -12,7 +12,7 @@ ACCEPT: application/json
 
 ### Search by Id
 
-GET {{Host}}/019F871B-22F4-7961-A908-45BB0458E346
+GET {{Host}}/9F8218AD-71B2-49E8-1DBE-08DEDE677B43
 ACCEPT: application/json
 
 ### Insert
@@ -21,11 +21,11 @@ POST {{Host}}
 Content-type: application/json
 
 {
-  "patientId": "9F8218AD-71B2-49E8-1DBE-08DEDE677B43",
-  "dentistId": "AF1FCD60-3BBC-4F52-EE00-08DEE3556597",
-  "dentistOfficeId": "019F1A44-442C-77C5-8F19-028EBC7BE2AD",
-  "startDate": "2023-10-10T09:30:00",
-  "endDate": "2023-10-10T10:45:00"
+  "patientId": "5E02C2A4-6086-437F-D1A5-08DEE312AF4F",
+  "dentistId": "3D335CDF-3340-4176-65F6-08DEE3532835",
+  "dentistOfficeId": "019F1A17-158D-7CB5-A85D-4D84A9D5295E",
+  "startDate": "2026-11-11T09:45:00",
+  "endDate": "2026-11-11T10:15:00"
 }
 
 ### Update by Id

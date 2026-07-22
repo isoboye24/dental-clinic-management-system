@@ -1,0 +1,12 @@
+﻿namespace DCMS.Application.Features.Appointments.Queries.GetAppointmentsList
+{
+    public class AppointmentsListDTO
+    {
+        public required Guid Id { get; set; }
+        public required string Patient { get; set; }
+        public required string Dentist { get; set; }
+        public required string DentalOffice { get; set; }
+        public required DateTime StartDate { get; set; }
+        public required DateTime EndDate { get; set; }
+    }
+}

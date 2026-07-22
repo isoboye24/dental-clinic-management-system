@@ -3,6 +3,7 @@ using DCMS.Application.Features.Appointments.Queries.GetAppointmentDetail;
 using DCMS.Application.Features.Appointments.Commands.CreateAppointment;
 using DCMS.Application.Utilities;
 using Microsoft.AspNetCore.Mvc;
+using DCMS.Application.Features.Appointments.Queries.GetAppointmentsList;
 
 namespace DCMS.API.Controllers
 {
@@ -17,7 +18,7 @@ namespace DCMS.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateAppointmentDTO createAppointmentDTO)
+        public async Task<IActionResult> Create([FromBody] CreateAppointmentDTO createAppointmentDTO)
         {
             var command = new CreateAppointmentCommand
             {
@@ -35,6 +36,13 @@ namespace DCMS.API.Controllers
         public async Task<IActionResult> GetById(Guid id)
         {
             var query = new GetAppointmentDetailQuery { Id = id };
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<AppointmentsListDTO>>> GetAll([FromQuery] GetAppointmentsListQuery query)
+        {
             var result = await _mediator.Send(query);
             return Ok(result);
         }

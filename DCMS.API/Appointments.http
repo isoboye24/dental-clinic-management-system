@@ -28,7 +28,12 @@ Content-type: application/json
   "endDate": "2026-11-11T10:15:00"
 }
 
-### Update by Appointment Status
+### Schedule Appointment by Id
+
+POST {{Host}}/019F8A93-4DE0-7C2D-A0C8-3F4EC337D44F/schedule
+Content-type: application/json
+
+### Complete Appointment by Id
 
 POST {{Host}}/019F871B-22F4-7961-A908-45BB0458E346/complete
 Content-type: application/json

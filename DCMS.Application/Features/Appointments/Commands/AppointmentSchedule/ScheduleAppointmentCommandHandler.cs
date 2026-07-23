@@ -3,28 +3,29 @@ using DCMS.Application.Contracts.Repositories;
 using DCMS.Application.Exceptions;
 using DCMS.Application.Utilities;
 
-namespace DCMS.Application.Features.Appointments.Commands.CompleteAppointment
+namespace DCMS.Application.Features.Appointments.Commands.AppointmentSchedule
 {
-    public class CompleteAppointmentCommandHandler : IRequestHandler<CompleteAppointmentCommand>
+    public class ScheduleAppointmentCommandHandler : IRequestHandler<ScheduleAppointmentCommand>
     {
         private readonly IAppointmentRepository _repository;
         private readonly IUnitOfWork _unitOfWork;
-        public CompleteAppointmentCommandHandler(IAppointmentRepository repository, IUnitOfWork unitOfWork)
+
+        public ScheduleAppointmentCommandHandler(IAppointmentRepository repository, IUnitOfWork unitOfWork)
         {
             _repository = repository;
             _unitOfWork = unitOfWork;
         }
 
-        public async Task Handle(CompleteAppointmentCommand request)
+        public async Task Handle(ScheduleAppointmentCommand request)
         {
-           var appointment = await _repository.GetById(request.Id);
-            
+            var appointment = await _repository.GetById(request.Id);
+
             if (appointment == null)
             {
                 throw new NotFoundException("Appointment not found");
             }
 
-            appointment.Complete();
+            appointment.Schedule();
 
             try
             {

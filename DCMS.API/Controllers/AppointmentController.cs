@@ -4,6 +4,7 @@ using DCMS.Application.Features.Appointments.Commands.CreateAppointment;
 using DCMS.Application.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using DCMS.Application.Features.Appointments.Queries.GetAppointmentsList;
+using DCMS.Application.Features.Appointments.Commands.CompleteAppointment;
 
 namespace DCMS.API.Controllers
 {
@@ -45,6 +46,14 @@ namespace DCMS.API.Controllers
         {
             var result = await _mediator.Send(query);
             return Ok(result);
+        }
+
+        [HttpPost("{id}/complete")]
+        public async Task<IActionResult> CompleteAppointment(Guid id)
+        {
+            var command = new CompleteAppointmentCommand { Id = id };
+            await _mediator.Send(command);
+            return NoContent();
         }
     }
 }

@@ -28,15 +28,11 @@ Content-type: application/json
   "endDate": "2026-11-11T10:15:00"
 }
 
-### Update by Id
+### Update by Appointment Status
 
-PUT {{Host}}/3D335CDF-3340-4176-65F6-08DEE3532835
+POST {{Host}}/019F871B-22F4-7961-A908-45BB0458E346/complete
 Content-type: application/json
 
-{
-  "name": "Dr. Sacha Porochock Junior",
-  "email": "sachaporochockjunior@gmail.com"
-}
 
 ### Delete by Id
 

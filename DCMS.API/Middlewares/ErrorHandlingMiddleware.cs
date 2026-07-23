@@ -1,4 +1,5 @@
 ﻿using DCMS.Application.Exceptions;
+using DCMS.Domain.Exceptions;
 using System.Net;
 using System.Text.Json;
 
@@ -41,6 +42,15 @@ namespace DCMS.API.Middlewares
                         status = (int)statusCode,
                         message = ex.Message
                     };
+                    break;
+
+                case BusinessRuleException businessRuleException:
+                    statusCode = HttpStatusCode.BadRequest;
+                    response = JsonSerializer.Serialize(new
+                    {
+                        status = (int)statusCode,
+                        message = businessRuleException.Message
+                    });
                     break;
 
                 case CustomValidationException ex:

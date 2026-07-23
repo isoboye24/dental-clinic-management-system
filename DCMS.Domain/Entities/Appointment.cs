@@ -55,12 +55,6 @@ namespace DCMS.Domain.Entities
 
         public void Pending()
         {
-            if (Status != AppointmentStatus.Pending)
-            {
-                throw new BusinessRuleException(
-                    "Only pending appointments can be Pending.");
-            }
-
             Status = AppointmentStatus.Pending;
         }
         
@@ -87,11 +81,10 @@ namespace DCMS.Domain.Entities
 
         public void Cancel()
         {
-            if (Status != AppointmentStatus.Pending 
-                && Status != AppointmentStatus.Scheduled 
-                && Status != AppointmentStatus.Completed)
+            if (Status != AppointmentStatus.Pending
+                || Status != AppointmentStatus.Scheduled)
             {
-                throw new BusinessRuleException("Only pending or scheduled or completed appointments can be cancelled");
+                throw new BusinessRuleException("Only pending or scheduled appointments can be cancelled");
             }
 
             Status = AppointmentStatus.Cancelled;

@@ -30,15 +30,13 @@ Content-type: application/json
 
 ### Schedule Appointment by Id
 
-POST {{Host}}/019F8A93-4DE0-7C2D-A0C8-3F4EC337D44F/schedule
+POST {{Host}}/019F8A95-4030-775E-A8FB-A746A91A99AC/schedule
 Content-type: application/json
 
 ### Complete Appointment by Id
 
-POST {{Host}}/019F871B-22F4-7961-A908-45BB0458E346/complete
-Content-type: application/json
+POST {{Host}}/019F8A8D-6B52-7F1E-8256-C7B792F124E6/complete
 
+### Cancel Appointment by Id
 
-### Delete by Id
-
-DELETE {{Host}}/9c9324ad-aef1-4ca0-9472-08dee3f0c0f5
+POST {{Host}}/019F8A93-4DE0-7C2D-A0C8-3F4EC337D44F/cancel

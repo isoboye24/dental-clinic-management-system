@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using DCMS.Application.Features.Appointments.Queries.GetAppointmentsList;
 using DCMS.Application.Features.Appointments.Commands.CompleteAppointment;
 using DCMS.Application.Features.Appointments.Commands.AppointmentSchedule;
+using DCMS.Application.Features.Appointments.Commands.CancelAppointment;
 
 namespace DCMS.API.Controllers
 {
@@ -61,6 +62,14 @@ namespace DCMS.API.Controllers
         public async Task<IActionResult> ScheduleAppointment(Guid id)
         {
             var command = new ScheduleAppointmentCommand { Id = id };
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpPost("{id}/cancel")]
+        public async Task<IActionResult> CancelAppointment(Guid id)
+        {
+            var command = new CancelAppointmentCommand { Id = id };
             await _mediator.Send(command);
             return NoContent();
         }
